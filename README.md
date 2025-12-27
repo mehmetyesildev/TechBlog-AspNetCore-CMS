@@ -45,14 +45,12 @@ Visual proof of backend security. The Admin manages the entire system, while sta
 | *Admin manages all authors and statuses.* | *Users only see their own posts.* |
 
 ### 2. Relational Data & Details
-Reflection of database relationships (Joins) on the UI: Users, Comments, and Tags.
+Reflection of database relationships (Joins) on the UI. The content and interaction areas are designed separately.
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/0b74d6c9-5ec8-451b-8110-279d3a20f77d" width="60%">
-</div>
-<br>
-
-> *Rich text rendering via Html.Raw and AJAX-based comment system.*
+| **Rich Text Content (Html.Raw)** | **Interactive Comment System (AJAX)** |
+|:---:|:---:|
+| <img src="https://github.com/user-attachments/assets/dc7ae519-dea3-41bb-ae75-d285a5af3832" height="450"> | <img src="https://github.com/user-attachments/assets/72763bb4-2b11-4c34-8020-9ccf496599a6" height="450"> |
+| *Blog posts support HTML content.* | *Comments load asynchronously.* |
 
 ### 3. Content Creation Panel
 TinyMCE editor and file upload mechanism.
