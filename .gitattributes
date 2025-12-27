@@ -1,7 +1,5 @@
-wwwroot/lib/** linguist-vendored
-lib/** linguist-vendored
-assets/** linguist-vendored
+wwwroot/** linguist-vendored
+*.css linguist-vendored
+*.js linguist-vendored
 
-*.scss linguist-vendored
-
-*.min.css linguist-vendored
+*.cshtml linguist-language=C#
