@@ -1,0 +1,24 @@
+@model List<Post>
+
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white border-bottom py-3">
+            <h6 class="m-0 fw-bold text-primary">
+                <i class="bi bi-stars me-2"></i>Son Yazılar
+            </h6>
+        </div>
+
+        <div class="list-group list-group-flush">
+            @foreach(var post in Model)
+            {
+            <a href="/posts/details/@post.Url"
+                class="list-group-item list-group-item-action border-0 py-3 d-flex align-items-center">
+
+                <i class="bi bi-chevron-right text-muted small me-2" style="font-size: 0.75rem;"></i>
+
+                <span class="fw-medium text-dark text-truncate">
+                    @post.Title
+                </span>
+            </a>
+            }
+        </div>
+    </div>

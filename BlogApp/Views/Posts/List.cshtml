@@ -1,0 +1,180 @@
+@model List<Post>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div
+                    class="card-header bg-white py-3 border-bottom-0 d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="mb-0 fw-bold text-dark">
+                            <i class="bi bi-journal-text me-2 text-primary"></i>Yazı Listesi
+                        </h5>
+                        <small class="text-muted">Toplam @Model.Count içerik listeleniyor</small>
+                    </div>
+                    <a href="/posts/create" class="btn btn-primary rounded-pill px-4 shadow-sm fw-bold">
+                        <i class="bi bi-plus-lg me-1"></i> Yeni Yazı Ekle
+                    </a>
+                </div>
+
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="ps-4 py-3 text-secondary small text-uppercase fw-bold"
+                                        style="width: 100px;">Görsel</th>
+                                    <th class="py-3 text-secondary small text-uppercase fw-bold">Başlık & İçerik</th>
+
+                                    @if(User.IsInRole("admin"))
+                                    {
+                                    <th class="py-3 text-secondary small text-uppercase fw-bold">Yazar</th>
+                                    }
+
+                                    <th class="py-3 text-secondary small text-uppercase fw-bold">Durum</th>
+                                    <th class="py-3 text-secondary small text-uppercase fw-bold text-end pe-4"
+                                        style="width: 150px;">İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if(Model.Any())
+                                {
+                                @foreach(var item in Model)
+                                {
+                                <tr>
+                                    <td class="ps-4">
+                                        <div class="ratio ratio-4x3 rounded-3 overflow-hidden shadow-sm"
+                                            style="width: 60px;">
+                                            <img src="~/img/@item.Image" class="object-fit-cover" alt="@item.Title">
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <h6 class="mb-0 fw-bold text-dark">@item.Title</h6>
+                                        @{
+                                        string plainText = string.IsNullOrEmpty(item.Content) ? "" :
+                                        System.Text.RegularExpressions.Regex.Replace(item.Content, "<.*?>",
+                                            string.Empty);
+                                            }
+                                            <small class="text-muted d-block text-truncate" style="max-width: 250px;">
+                                                @(plainText.Length > 50 ? plainText.Substring(0, 50) + "..." :
+                                                plainText)
+                                            </small>
+                                    </td>
+
+                                    @if(User.IsInRole("admin"))
+                                    {
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            @if(item.User != null)
+                                            {
+                                            <img src="~/img/@(string.IsNullOrEmpty(item.User.Image) ? " avatar.jpg" :
+                                                item.User.Image)" class="rounded-circle me-2 border" width="35"
+                                                height="35" style="object-fit: cover;" alt="@item.User.Name">
+                                            <div>
+                                                <span class="d-block fw-bold small text-dark">@item.User.Name</span>
+                                                <span class="d-block x-small text-muted">@item.User.UserName</span>
+                                            </div>
+                                            }
+                                            else
+                                            {
+                                            <span class="badge bg-secondary">Bilinmiyor</span>
+                                            }
+                                        </div>
+                                    </td>
+                                    }
+
+                                    <td>
+                                        @if(item.IsActive)
+                                        {
+                                        <span
+                                            class="badge rounded-pill bg-success-subtle text-success border border-success-subtle px-3 py-2">
+                                            <i class="bi bi-check-circle-fill me-1"></i> Yayında
+                                        </span>
+                                        }
+                                        else
+                                        {
+                                        <span
+                                            class="badge rounded-pill bg-danger-subtle text-danger border border-danger-subtle px-3 py-2">
+                                            <i class="bi bi-x-circle-fill me-1"></i> Pasif
+                                        </span>
+                                        }
+                                    </td>
+
+                                    <td class="text-end pe-4">
+                                        <a asp-action="Edit" asp-route-id="@item.PostId"
+                                            class="btn btn-sm btn-outline-primary border-0 bg-primary-subtle text-primary me-1"
+                                            data-bs-toggle="tooltip" title="Düzenle">
+                                            <i class="bi bi-pencil-square fs-6"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.PostId"
+                                            class="btn btn-sm btn-outline-danger border-0 bg-danger-subtle text-danger"
+                                            data-bs-toggle="tooltip" title="Sil"
+                                            onclick="return confirm('Bu yazıyı silmek istediğinize emin misiniz?');">
+                                            <i class="bi bi-trash fs-6"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                }
+                                }
+                                else
+                                {
+                                <tr>
+                                    <td colspan="@(User.IsInRole(" Admin") ? 5 : 4)" class="text-center py-5">
+                                        <div class="text-muted">
+                                            <i class="bi bi-inbox display-4 d-block mb-3"></i>
+                                            <h6>Henüz hiç yazı eklenmemiş.</h6>
+                                            <a href="/posts/create" class="btn btn-link text-decoration-none">İlk yazını
+                                                ekle</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card-footer bg-white py-3 border-top-0">
+                    <small class="text-muted">Toplam @Model.Count kayıt gösteriliyor.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts{
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+    }
+
+    <style>
+        .table-hover tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .bg-success-subtle {
+            background-color: #d1e7dd !important;
+        }
+
+        .bg-danger-subtle {
+            background-color: #f8d7da !important;
+        }
+
+        .bg-primary-subtle {
+            background-color: #cfe2ff !important;
+        }
+
+        .object-fit-cover {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        .x-small {
+            font-size: 0.75rem;
+        }
+    </style>

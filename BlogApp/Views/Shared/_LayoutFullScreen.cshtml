@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogApp</title>
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/lib/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navbar-brand {
+            letter-spacing: -0.5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm py-3"
+        style="z-index: 1000; position: relative;">
+        <div class="container">
+            <a href="/posts" class="navbar-brand fw-bold text-primary fs-4">
+                <i class="bi bi-code-square me-2"></i>BlogApp
+            </a>
+
+            <ul class="navbar-nav ms-auto align-items-center">
+                @if(User.Identity!.IsAuthenticated)
+                {
+                <li class="nav-item">
+                    <a href="/posts/list" class="nav-link fw-medium px-3 text-dark">Posts</a>
+                </li>
+                <li class="nav-item ms-2">
+                    <a href="/profile/@User.Identity.Name"
+                        class="nav-link fw-bold bg-light px-3 rounded-pill text-primary border">
+                        <i class="bi bi-person-fill me-1"></i>@User.Identity.Name
+                    </a>
+                </li>
+                <li class="nav-item ms-2">
+                    <a href="/users/logout" class="nav-link text-danger fw-medium">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </a>
+                </li>
+                }
+                else
+                {
+                <li class="nav-item ms-2">
+                    <a href="/users/login" class="btn btn-outline-primary px-4 rounded-pill fw-medium">Login</a>
+                </li>
+                <li class="nav-item ms-2">
+                    <a href="/users/register" class="btn btn-primary px-4 rounded-pill fw-medium shadow-sm">Register</a>
+                </li>
+                }
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <script src="/lib/bootstrap/js/bootstrap.bundle.min.js"></script> @RenderSection("Scripts", required: false)
+</body>
+
+</html>

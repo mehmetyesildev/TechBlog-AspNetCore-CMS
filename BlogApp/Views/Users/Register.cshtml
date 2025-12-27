@@ -1,0 +1,124 @@
+@model RegisterViewModel
+
+<div class="container-fluid p-0 overflow-hidden">
+    <div class="row g-0" style="min-height: 100vh;">
+
+        <div class="col-lg-7 d-none d-lg-block position-relative">
+            <img src="/img/blog.png"
+                class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="Background">
+
+            <div
+                class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex flex-column justify-content-end p-5 text-white">
+                <h1 class="display-4 fw-bold mb-3">BlogApp'e Katıl</h1>
+                <p class="fs-5 text-white-50">Teknoloji, yazılım ve hayat üzerine en güncel yazıların buluşma noktası.
+                </p>
+                <small class="mt-4 text-white-50">&copy; 2025 BlogApp Design</small>
+            </div>
+        </div>
+
+        <div class="col-lg-5 d-flex align-items-center justify-content-center bg-white">
+            <div class="w-100 p-4 p-md-5" style="max-width: 550px;">
+
+                <div class="mb-5">
+                    <div class="d-flex align-items-center gap-3 mb-2">
+                        <div class="bg-success text-white rounded-3 d-flex align-items-center justify-content-center"
+                            style="width: 45px; height: 45px;">
+                            <i class="bi bi-person-plus-fill fs-4"></i>
+                        </div>
+                        <h2 class="fw-bold text-dark m-0">Hesap Oluştur</h2>
+                    </div>
+                    <p class="text-secondary">Aramıza katılmak için bilgilerinizi girin.</p>
+                </div>
+
+                <form action="Register" method="post" novalidate>
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger rounded-3 text-center small mb-4">
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="Name" class="form-label fw-bold small text-muted">AD SOYAD</label>
+                            <input asp-for="Name" class="form-control bg-light border-0 py-2" placeholder="Ad Soyad">
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="UserName" class="form-label fw-bold small text-muted">KULLANICI ADI</label>
+                            <input asp-for="UserName" class="form-control bg-light border-0 py-2"
+                                placeholder="kullaniciadi">
+                            <span asp-validation-for="UserName" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-bold small text-muted">E-POSTA</label>
+                        <input asp-for="Email" type="email" class="form-control bg-light border-0 py-2"
+                            placeholder="ornek@mail.com">
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label asp-for="Password" class="form-label fw-bold small text-muted">ŞİFRE</label>
+                            <input asp-for="Password" type="password" class="form-control bg-light border-0 py-2"
+                                placeholder="******">
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="ConfirmPassword" class="form-label fw-bold small text-muted">TEKRAR</label>
+                            <input asp-for="ConfirmPassword" type="password" class="form-control bg-light border-0 py-2"
+                                placeholder="******">
+                            <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-grid mb-4">
+                        <button type="submit"
+                            class="btn btn-success btn-lg py-3 rounded-3 fw-bold hover-scale shadow-sm">
+                            Hemen Kayıt Ol
+                        </button>
+                    </div>
+
+                    <div class="text-center">
+                        <p class="text-muted">Zaten hesabınız var mı?
+                            <a href="/users/login" class="text-success fw-bold text-decoration-none hover-underline">
+                                Giriş Yapın
+                            </a>
+                        </p>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Scrollbar çıkmaması için */
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Resim tam otursun */
+    .object-fit-cover {
+        object-fit: cover;
+    }
+
+    /* Inputlara odaklanınca hafif efekt */
+    .form-control:focus {
+        background-color: #fff !important;
+        box-shadow: 0 0 0 4px rgba(25, 135, 84, 0.1);
+        /* Yeşil gölge */
+        border: 1px solid #198754 !important;
+    }
+
+    .hover-scale {
+        transition: transform 0.2s;
+    }
+
+    .hover-scale:hover {
+        transform: translateY(-2px);
+    }
+
+    .hover-underline:hover {
+        text-decoration: underline !important;
+    }
+</style>
