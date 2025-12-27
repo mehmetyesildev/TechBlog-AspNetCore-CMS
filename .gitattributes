@@ -5,9 +5,8 @@ wwwroot/js/** linguist-vendored
 
 *.scss linguist-vendored
 *.sass linguist-vendored
-*.css linguist-vendored
 *.map linguist-vendored
 
-*.js linguist-vendored
 
-*.cshtml linguist-language=C#
+*.min.css linguist-vendored
+*.min.js linguist-vendored
