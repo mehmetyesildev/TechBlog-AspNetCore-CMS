@@ -1,6 +1,13 @@
 
 wwwroot/lib/** linguist-vendored
+wwwroot/css/** linguist-vendored
+wwwroot/js/** linguist-vendored
 
-# Minify edilmiş (sıkıştırılmış) dosyaları yoksay
-*.min.css linguist-vendored
-*.min.js linguist-vendored
+*.scss linguist-vendored
+*.sass linguist-vendored
+*.css linguist-vendored
+*.map linguist-vendored
+
+*.js linguist-vendored
+
+*.cshtml linguist-language=C#
