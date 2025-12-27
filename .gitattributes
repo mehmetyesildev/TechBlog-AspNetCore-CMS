@@ -1,0 +1,7 @@
+wwwroot/lib/** linguist-vendored
+lib/** linguist-vendored
+assets/** linguist-vendored
+
+*.scss linguist-vendored
+
+*.min.css linguist-vendored
