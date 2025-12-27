@@ -93,4 +93,4 @@ To run this project locally, follow these steps:
 ## 👨‍💻 Contact
 
 * **Developer:** Mehmet Yeşil
-* **Project:** ASP.NET Core Learning Path & Portfolio
+* **Project:** ASP.NET Core Portfolio
