@@ -41,25 +41,32 @@ Visual proof of backend security. The Admin manages the entire system, while sta
 
 | **Admin Panel (Full Access)** | **Standard User Panel (Restricted)** |
 |:---:|:---:|
-| ![Admin Panel]<img width="1022" height="486" alt="admin" src="https://github.com/user-attachments/assets/55edc30b-a2d2-4af7-b7d1-7f057d05fc61" /> | ![User Panel]<img width="1035" height="327" alt="user" src="https://github.com/user-attachments/assets/695aba38-903d-4e81-9455-979ae1de6266" /> |
+| <img src="https://github.com/user-attachments/assets/55edc30b-a2d2-4af7-b7d1-7f057d05fc61" height="300"> | <img src="https://github.com/user-attachments/assets/695aba38-903d-4e81-9455-979ae1de6266" height="300"> |
 | *Admin manages all authors and statuses.* | *Users only see their own posts.* |
 
 ### 2. Relational Data & Details
 Reflection of database relationships (Joins) on the UI: Users, Comments, and Tags.
 
-![Detail Page]<img width="441" height="783" alt="Details" src="https://github.com/user-attachments/assets/0b74d6c9-5ec8-451b-8110-279d3a20f77d" />
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/0b74d6c9-5ec8-451b-8110-279d3a20f77d" width="60%">
+</div>
+<br>
+
 > *Rich text rendering via Html.Raw and AJAX-based comment system.*
 
 ### 3. Content Creation Panel
 TinyMCE editor and file upload mechanism.
 
-![New Post]<img width="740" height="676" alt="newpost" src="https://github.com/user-attachments/assets/66e50e0c-d1d4-4d2f-9193-62042f4845fe" />
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/66e50e0c-d1d4-4d2f-9193-62042f4845fe" width="85%">
+</div>
 
 ### 4. Modern Showcase (Home Page)
 Responsive home page with pagination infrastructure.
 
-![Home Page]<img width="1032" height="821" alt="Index" src="https://github.com/user-attachments/assets/e9060a7e-aefc-4d18-8790-de15fc8cd66f" />
-
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/e9060a7e-aefc-4d18-8790-de15fc8cd66f" width="85%">
+</div>
 
 ---
 
