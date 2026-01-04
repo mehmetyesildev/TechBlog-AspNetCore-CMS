@@ -1,3 +1,14 @@
+# 📢 Architecture Versions
+
+This project demonstrates my ability to implement different authentication patterns. You can browse the source code for both versions via branches:
+
+| Version | Architecture | Description | Link |
+|---------|--------------|-------------|------|
+| **v2.0 (Current)** | **ASP.NET Core Identity** | Professional security, RBAC, Hashing, Lockout & 2FA ready. | [Browse Code](https://github.com/mehmetyesildev/TechBlog-AspNetCore-CMS/tree/main) |
+| **v1.0 (Legacy)** | **Manual Cookie Auth** | Custom authentication built with `HttpContext.SignInAsync`. | [Browse Code](https://github.com/mehmetyesildev/TechBlog-AspNetCore-CMS/tree/v1-manual-cookie-auth) |
+
+---
+
 # 🚀 TechBlog - Modern ASP.NET Core CMS
 
 ![.NET Core](https://img.shields.io/badge/.NET%20Core-8.0-purple?style=flat&logo=dotnet) ![Entity Framework](https://img.shields.io/badge/Entity%20Framework-Core-blue?style=flat&logo=nuget) ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-orange?style=flat&logo=bootstrap) ![License](https://img.shields.io/badge/License-Non%20Commercial-red)
@@ -15,7 +26,7 @@ TechBlog is a dynamic content management system developed from scratch using **A
 * **Seed Data:** Automated test data generation upon initial application startup.
 
 ### 🔐 Security & Authentication
-* **Cookie-Based Authentication:** Secure session management.
+* **Authentication:** Evolving from Cookie-Based to **ASP.NET Core Identity**.
 * **Role-Based Authorization (RBAC):**
     * **Admin:** Full access to manage all content (Active/Passive), users, and roles.
     * **User:** Can only view and manage their own content; isolated from administrative functions.
