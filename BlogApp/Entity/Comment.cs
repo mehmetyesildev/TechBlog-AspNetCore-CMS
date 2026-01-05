@@ -2,6 +2,7 @@ using System;
 
 namespace BlogApp.Entity;
 
+
 public class Comment
 {
     public int CommentId { get; set; }

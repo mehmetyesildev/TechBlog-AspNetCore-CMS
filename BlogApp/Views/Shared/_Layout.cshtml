@@ -1,3 +1,9 @@
+@if(TempData["message"] !=null)
+{
+    <div class="alert alert-warning">
+        @TempData["message"]
+    </div>
+}
 <!DOCTYPE html>
 <html lang="tr">
 
@@ -35,19 +41,33 @@
             <ul class="navbar-nav ms-auto align-items-center">
                 @if(User.Identity!.IsAuthenticated)
                 {
-                <li class="nav-item">
-                    <a href="/posts/list" class="nav-link fw-medium px-3 text-dark">Posts</a>
-                </li>
-                <li class="nav-item ms-2">
-                    <a href="/profile/@User.Identity.Name" class="nav-link fw-bold bg-light px-3 rounded-pill text-primary border">
-                        <i class="bi bi-person-fill me-1"></i>@User.Identity.Name
-                    </a>
-                </li>
-                <li class="nav-item ms-2">
-                    <a href="/users/logout" class="nav-link text-danger fw-medium">
-                        <i class="bi bi-box-arrow-right"></i> Logout
-                    </a>
-                </li>
+                     @if(User.IsInRole("admin") || User.IsInRole("moderator"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Users</a>
+                                </li>
+                                @if(User.IsInRole("admin"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">Roles</a>
+                                    </li>
+                                }
+                                
+                            }
+
+                    <li class="nav-item">
+                        <a href="/posts/list" class="nav-link fw-medium px-3 text-dark">Posts</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a href="/profile/@User.Identity.Name" class="nav-link fw-bold bg-light px-3 rounded-pill text-primary border">
+                            <i class="bi bi-person-fill me-1"></i>@User.Identity.Name
+                        </a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a href="/users/logout" class="nav-link text-danger fw-medium">
+                            <i class="bi bi-box-arrow-right"></i> Logout
+                        </a>
+                    </li>
                 }
                 else
                 {

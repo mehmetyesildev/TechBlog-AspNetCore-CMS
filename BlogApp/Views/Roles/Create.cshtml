@@ -1,0 +1,56 @@
+@model AppRole
+
+<div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+
+        <div class="card shadow-lg border-0 rounded-3 mt-5">
+
+            <div class="card-header bg-primary text-white py-3 rounded-top-3">
+                <h5 class="card-title mb-0 fw-bold">
+                    <i class="bi bi-shield-plus me-2"></i> Yeni Rol Oluştur
+                </h5>
+            </div>
+
+            <div class="card-body p-4">
+                <form asp-action="Create" method="post">
+
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger small shadow-sm"></div>
+
+                    <div class="mb-4">
+                        <label asp-for="Name" class="form-label text-secondary small fw-bold text-uppercase">
+                            Rol Adı
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0 text-primary">
+                                <i class="bi bi-tag-fill"></i>
+                            </span>
+                            <input asp-for="Name" class="form-control border-start-0 ps-0"
+                                placeholder="Örn: Admin, Moderator" autocomplete="off" />
+                        </div>
+                        <span asp-validation-for="Name" class="text-danger small mt-1 d-block"></span>
+                        <div class="form-text text-muted small">
+                            Sistemdeki yetkilendirmeler bu rol adına göre yapılacaktır.
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-2 border-top pt-3 mt-2">
+                        <a asp-action="Index"
+                            class="btn btn-light rounded-pill px-4 text-secondary border hover-shadow">
+                            <i class="bi bi-arrow-left me-1"></i> İptal
+                        </a>
+
+                        <button type="submit" class="btn btn-primary rounded-pill px-4 shadow-sm">
+                            <i class="bi bi-check-lg me-1"></i> Kaydet
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

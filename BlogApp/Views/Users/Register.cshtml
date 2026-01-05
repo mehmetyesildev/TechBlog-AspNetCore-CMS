@@ -30,7 +30,7 @@
                     <p class="text-secondary">Aramıza katılmak için bilgilerinizi girin.</p>
                 </div>
 
-                <form action="Register" method="post" novalidate>
+                <form action="Register" method="post" id="registerForm" novalidate>
                     <div asp-validation-summary="ModelOnly" class="alert alert-danger rounded-3 text-center small mb-4">
                     </div>
 
@@ -72,6 +72,7 @@
 
                     <div class="d-grid mb-4">
                         <button type="submit"
+                            id="btnSubmit"
                             class="btn btn-success btn-lg py-3 rounded-3 fw-bold hover-scale shadow-sm">
                             Hemen Kayıt Ol
                         </button>
@@ -122,3 +123,13 @@
         text-decoration: underline !important;
     }
 </style>
+@section Scripts {
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function() {
+            var btn = document.getElementById("btnSubmit");
+        
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> İşleniyor...';
+        });
+    </script>
+}

@@ -22,7 +22,7 @@ namespace BlogApp.Models
         [StringLength(10,ErrorMessage ="{0} alanı en az {2} karekter uznuluğunda olmalıdır." ,MinimumLength =6)]
         [DataType(DataType.Password)]
         [Display(Name ="Parola")]
-        public string? Password { get; set; }
+        public string Password { get; set; }=string.Empty;
         [Required]
         [DataType(DataType.Password)]
         [Compare(nameof(Password),ErrorMessage ="Parolanız eşlesmiyor")]

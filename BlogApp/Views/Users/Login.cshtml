@@ -41,7 +41,13 @@
                                 placeholder="******">
                         </div>
                         <span asp-validation-for="Password" class="text-danger small mt-1 d-block"></span>
-                    </div>
+                        
+                        <div class="d-flex justify-content-end mt-2">
+                            <a href="/Users/ForgotPassword" class="text-muted small text-decoration-none hover-primary">
+                                <i class="bi bi-question-circle me-1"></i>Şifremi Unuttum?
+                            </a>
+                        </div>
+                        </div>
 
                     <div class="d-grid mb-4">
                         <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm fw-bold hover-scale">
@@ -96,6 +102,12 @@
     }
 
     .hover-underline:hover {
+        text-decoration: underline !important;
+    }
+
+    /* Yeni eklenen hover efekti */
+    .hover-primary:hover {
+        color: #0d6efd !important; /* Bootstrap primary color */
         text-decoration: underline !important;
     }
 </style>
