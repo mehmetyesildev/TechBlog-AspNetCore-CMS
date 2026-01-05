@@ -11,7 +11,7 @@ This project demonstrates my ability to implement different authentication patte
 
 # 🚀 TechBlog - Modern ASP.NET Core CMS
 
-![.NET Core](https://img.shields.io/badge/.NET%20Core-8.0-purple?style=flat&logo=dotnet) ![Entity Framework](https://img.shields.io/badge/Entity%20Framework-Core-blue?style=flat&logo=nuget) ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-orange?style=flat&logo=bootstrap) ![Security](https://img.shields.io/badge/Security-Identity%20%26%20RBAC-green)
+![.NET Core](https://img.shields.io/badge/.NET%20Core-8.0-purple?style=flat&logo=dotnet) ![Entity Framework](https://img.shields.io/badge/Entity%20Framework-Core-blue?style=flat&logo=nuget) ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-orange?style=flat&logo=bootstrap) ![Security](https://img.shields.io/badge/Security-Identity%20%26%20RBAC-green) ![License](https://img.shields.io/badge/License-Non%20Commercial-red)
 
 TechBlog is a dynamic content management system developed from scratch using **ASP.NET Core 8.0** architecture. Built upon the principles of **N-Tier Architecture**, the project has been enhanced with **Hierarchical Role-Based Authorization**, **AJAX-based interactions**, and a **Secure Admin Panel**.
 
