@@ -9,5 +9,4 @@ wwwroot/js/** linguist-vendored
 *.min.css linguist-vendored
 *.min.js linguist-vendored
 
-# --- Yeni Eklenen Satır ---
 *.cshtml linguist-language=C#
