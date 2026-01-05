@@ -4,20 +4,30 @@ This project demonstrates my ability to implement different authentication patte
 
 | Version | Architecture | Description | Link |
 |---------|--------------|-------------|------|
-| **v2.0 (Current)** | **ASP.NET Core Identity** | Professional security, RBAC, Hashing, Lockout & 2FA ready. | [Browse Code](https://github.com/mehmetyesildev/TechBlog-AspNetCore-CMS/tree/main) |
+| **v2.0 (Current)** | **ASP.NET Core Identity** | **Granular RBAC** (Admin/Moderator), **Privilege Escalation Protection**, Hashing, Lockout & 2FA ready. | [Browse Code](https://github.com/mehmetyesildev/TechBlog-AspNetCore-CMS/tree/main) |
 | **v1.0 (Legacy)** | **Manual Cookie Auth** | Custom authentication built with `HttpContext.SignInAsync`. | [Browse Code](https://github.com/mehmetyesildev/TechBlog-AspNetCore-CMS/tree/v1-manual-cookie-auth) |
 
 ---
 
 # 🚀 TechBlog - Modern ASP.NET Core CMS
 
-![.NET Core](https://img.shields.io/badge/.NET%20Core-8.0-purple?style=flat&logo=dotnet) ![Entity Framework](https://img.shields.io/badge/Entity%20Framework-Core-blue?style=flat&logo=nuget) ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-orange?style=flat&logo=bootstrap) ![License](https://img.shields.io/badge/License-Non%20Commercial-red)
+![.NET Core](https://img.shields.io/badge/.NET%20Core-8.0-purple?style=flat&logo=dotnet) ![Entity Framework](https://img.shields.io/badge/Entity%20Framework-Core-blue?style=flat&logo=nuget) ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-orange?style=flat&logo=bootstrap) ![Security](https://img.shields.io/badge/Security-Identity%20%26%20RBAC-green)
 
-TechBlog is a dynamic content management system developed from scratch using **ASP.NET Core 8.0** architecture. Built upon the principles of **N-Tier Architecture**, the project has been enhanced with **Role-Based Authorization (RBAC)**, **AJAX-based interactions**, and a **Modern UI**.
+TechBlog is a dynamic content management system developed from scratch using **ASP.NET Core 8.0** architecture. Built upon the principles of **N-Tier Architecture**, the project has been enhanced with **Hierarchical Role-Based Authorization**, **AJAX-based interactions**, and a **Secure Admin Panel**.
 
 ---
 
 ## 🌟 Key Features & Technical Insights
+
+### 🛡️ Advanced Security & Identity (v2.0 Update)
+* **ASP.NET Core Identity:** Complete integration for secure user management, login, and registration.
+* **Granular RBAC (Hierarchical Roles):**
+    * **Admin:** Full access. Can manage Roles, Users, and assign other Admins.
+    * **Moderator:** Can manage content and users but has **restricted privileges**.
+    * **User:** Isolated environment. Can only view/edit their own profile.
+* **Privilege Escalation Protection:**
+    * **Backend Logic:** A specialized logic block prevents Moderators from assigning "Admin" or "Moderator" roles to others. This prevents unauthorized authority expansion.
+    * **Frontend Security:** Dynamic Views automatically hide sensitive controls (e.g., "Admin" role checkbox, "Roles" menu link) based on the logged-in user's hierarchy.
 
 ### 🏗️ Backend & Architecture
 * **Entity Framework Core (Code First):** Database entities designed as C# classes and managed via `Migrations`.
@@ -25,18 +35,11 @@ TechBlog is a dynamic content management system developed from scratch using **A
 * **Data Modeling:** Optimized One-to-Many (Author-Post, Post-Comment) and Many-to-Many (Post-Tag) relationships.
 * **Seed Data:** Automated test data generation upon initial application startup.
 
-### 🔐 Security & Authentication
-* **Authentication:** Evolving from Cookie-Based to **ASP.NET Core Identity**.
-* **Role-Based Authorization (RBAC):**
-    * **Admin:** Full access to manage all content (Active/Passive), users, and roles.
-    * **User:** Can only view and manage their own content; isolated from administrative functions.
-* **Backend Validation:** Prevents unauthorized access via URL manipulation (IDor Protection).
-
 ### 🎨 Frontend & UI
-* **ViewComponents:** Modular design for Sidebar, Popular Posts, and Tag Cloud.
+* **Dynamic Navbar:** Menu items (Users/Roles) adjust visibility based on User Claims.
 * **AJAX & jQuery:** Asynchronous comment submission and listing without page reloads.
-* **Modern Design:** Responsive card layouts utilizing **Bootstrap 5**.
-* **State Management (UI):** Visual badges for content status (Published/Draft) and user roles.
+* **ViewComponents:** Modular design for Sidebar, Popular Posts, and Tag Cloud.
+* **State Management:** Visual badges for content status (Published/Draft) and user roles.
 
 ### ⚙️ Content Management System (CMS)
 * **Rich Text Editor:** Integrated **TinyMCE** for HTML-formatted blog post creation.
@@ -45,36 +48,48 @@ TechBlog is a dynamic content management system developed from scratch using **A
 
 ---
 
-## 📸 Screenshots
+## 📸 v2.0 Security Showcase (Identity & RBAC)
 
-### 1. Role-Based Authorization (Admin vs User)
-Visual proof of backend security. The Admin manages the entire system, while standard users are isolated to their own data.
+This section demonstrates the **Hierarchical Security System** implemented in v2.0.
 
-| **Admin Panel (Full Access)** | **Standard User Panel (Restricted)** |
+### 1. Granular Access Control (Admin vs. Moderator)
+The most critical security feature: **Moderators cannot create Admins.** The system dynamically renders the UI based on privileges.
+
+| **Admin Perspective (Full Control)** | **Moderator Perspective (Restricted)** |
 |:---:|:---:|
-| <img src="https://github.com/user-attachments/assets/55edc30b-a2d2-4af7-b7d1-7f057d05fc61" height="300"> | <img src="https://github.com/user-attachments/assets/695aba38-903d-4e81-9455-979ae1de6266" height="300"> |
-| *Admin manages all authors and statuses.* | *Users only see their own posts.* |
+| <img src="https://github.com/user-attachments/assets/0983b53d-bf85-41bb-a33f-f435072e53e8" width="100%" alt="Admin Edit View"> | <img src="https://github.com/user-attachments/assets/e631b368-fa29-477d-9bb9-3a79cea1171c" width="100%" alt="Moderator Edit View"> |
+| *Admin can see and assign 'Admin' & 'Moderator' roles.* | *Critical roles are HIDDEN and backend-protected.* |
 
-### 2. Relational Data & Details
-Reflection of database relationships (Joins) on the UI. The content and interaction areas are designed separately.
+### 2. Identity Pages & Role Management
 
-| **Rich Text Content (Html.Raw)** | **Interactive Comment System (AJAX)** |
+| **Secure Login Interface** | **Role Management (Admin Only)** |
 |:---:|:---:|
-| <img src="https://github.com/user-attachments/assets/dc7ae519-dea3-41bb-ae75-d285a5af3832" height="450"> | <img src="https://github.com/user-attachments/assets/72763bb4-2b11-4c34-8020-9ccf496599a6" height="450"> |
-| *Blog posts support HTML content.* | *Comments load asynchronously.* |
+| <img src="https://github.com/user-attachments/assets/c8760672-423d-4d6a-9c74-c23cd61c367f" width="100%" alt="Login Screen"> | <img src="https://github.com/user-attachments/assets/e4bc9820-5d9d-448f-a61e-5acc9177902b" width="100%" alt="Role Management"> |
+| *Customized Identity forms.* | *Admins can manage system roles.* |
 
-### 3. Content Creation Panel
+---
+
+## 📸 General Application Screenshots
+
+### 1. Modern Showcase (Home Page)
+Responsive home page with pagination infrastructure.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/e9060a7e-aefc-4d18-8790-de15fc8cd66f" width="85%">
+</div>
+
+### 2. Content Creation Panel
 TinyMCE editor and file upload mechanism.
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/66e50e0c-d1d4-4d2f-9193-62042f4845fe" width="85%">
 </div>
 
-### 4. Modern Showcase (Home Page)
-Responsive home page with pagination infrastructure.
+### 3. Interactive Comment System (AJAX)
+Comments load and submit asynchronously.
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/e9060a7e-aefc-4d18-8790-de15fc8cd66f" width="85%">
+  <img src="https://github.com/user-attachments/assets/72763bb4-2b11-4c34-8020-9ccf496599a6" width="85%">
 </div>
 
 ---
@@ -104,4 +119,3 @@ To run this project locally, follow these steps:
 ## 👨‍💻 Contact
 
 * **Developer:** Mehmet Yeşil
-* **Project:** ASP.NET Core Learning Path & Portfolio
