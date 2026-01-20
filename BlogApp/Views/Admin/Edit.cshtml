@@ -1,0 +1,90 @@
+@model EditViewModels
+
+<div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+
+        <div class="card shadow-sm border-0 rounded-3 mt-4">
+
+            <div class="card-header bg-white border-bottom py-3">
+                <h5 class="card-title mb-0 text-primary fw-bold">
+                    <i class="bi bi-pencil-square me-2"></i>Kullanıcı Düzenle
+                </h5>
+            </div>
+
+            <div class="card-body p-4">
+                <form asp-action="Edit" method="post">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3 small"></div>
+                    <input type="hidden" asp-for="UserId" />
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label text-secondary small fw-bold text-uppercase">Ad Soyad</label>
+                        <input asp-for="Name" class="form-control" placeholder="Ad Soyad giriniz" />
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Email" class="form-label text-secondary small fw-bold text-uppercase">Email Adresi</label>
+                        <input asp-for="Email" type="email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label text-secondary small fw-bold text-uppercase">Kullanıcı Rolleri</label>
+
+                        <div class="card p-3 bg-light border-0">
+                            @foreach (var role in ViewBag.Roles)
+                            {
+                                // --- GİZLEME KODU ---
+                                // Eğer rol "admin" veya "moderator" ise VE kullanıcı admin değilse
+                                // O kutuyu çizmeden atla (continue)
+                                @if ((role == "admin" || role == "moderator") && !User.IsInRole("admin"))
+                                {
+                                    continue;
+                                }
+                                // --------------------
+
+                                <div class="form-check">
+                                    <input type="checkbox" 
+                                           class="form-check-input" 
+                                           name="SelectedRoles" 
+                                           value="@role"
+                                           id="@role" 
+                                           @(Model.SelectedRoles != null && Model.SelectedRoles.Any(i => i == role) ? "checked" : "") >
+
+                                    <label class="form-check-label" for="@role">@role</label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="bg-light p-3 rounded-3 border mb-3">
+                        <h6 class="text-dark fw-bold mb-3 border-bottom pb-2">
+                            <i class="bi bi-key me-1"></i> Parola Güncelle
+                        </h6>
+                        <div class="alert alert-info py-2 small mb-3">
+                            <i class="bi bi-info-circle me-1"></i> Parolayı değiştirmek istemiyorsanız boş bırakın.
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label text-secondary small fw-bold text-uppercase">Yeni Şifre</label>
+                            <input asp-for="Password" type="password" class="form-control" placeholder="Yeni şifre (Opsiyonel)" />
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+                        <div class="mb-0">
+                            <label asp-for="ConfirmPassword" class="form-label text-secondary small fw-bold text-uppercase">Şifre Tekrar</label>
+                            <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Yeni şifre tekrar" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-2 border-top pt-3 mt-4">
+                        <a asp-action="Index" class="btn btn-light rounded-pill px-4 text-secondary border">İptal</a>
+                        <button type="submit" class="btn btn-primary rounded-pill px-4 shadow-sm">
+                            <i class="bi bi-check-lg me-1"></i> Güncelle
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
